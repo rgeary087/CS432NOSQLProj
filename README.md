@@ -8,6 +8,9 @@ Chad NBA NOSQL database meant to analyze teammates.
 * Neo4J
 * Poetry
 
+## Remarks:
+Trying to integrate poetry with vs code to test sportsipy api
+
 ## TODO:
 * Make Dockerfile
 * Import Data

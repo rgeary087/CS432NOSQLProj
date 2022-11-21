@@ -7,6 +7,10 @@ readme = "../README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
+neo4j = "^5.2.0"
+numpy = "^1.23.4"
+pandas = "^1.5.1"
+sportsipy = "^0.6.0"
 
 
 [build-system]
