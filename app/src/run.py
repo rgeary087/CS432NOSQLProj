@@ -1,5 +1,2 @@
-from sportsipy.nba.teams import Teams
+import pandas as pd
 
-teams = Teams()
-for team in teams:
-    print(team.name, team.abbreviation)
