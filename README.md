@@ -3,7 +3,7 @@
 Chad NBA NOSQL database meant to analyze teammates.
 
 ## Setup:
-* Install {Docker}[https://www.docker.com/]
+* Install [Docker](https://www.docker.com/)
 * Start Docker Desktop
 * Clone this repo and navigate to it
 * cd into app directory
