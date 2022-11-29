@@ -3,7 +3,7 @@ FROM neo4j
 RUN apt-get update && \ 
     apt-get install -yq --no-install-recommends \
     nano-tiny \
-    python \
+    python3 \
     python3-pip \
     vim-tiny && \
     apt-get clean && \
@@ -19,8 +19,11 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY . .
+COPY pyproject.toml .
+
+RUN poetry install
+
+COPY src .
 
 ENV NEO4J_AUTH=neo4j/test
 
-RUN echo "hello  world"

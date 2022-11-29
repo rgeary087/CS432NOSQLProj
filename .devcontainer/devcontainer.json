@@ -1,0 +1,10 @@
+{
+	"image": "bball:latest",
+  
+	"customizations": {
+	  "vscode": {
+		"extensions": ["dbaeumer.vscode-eslint"]
+	  }
+	},
+	"forwardPorts": [3000]
+  }
