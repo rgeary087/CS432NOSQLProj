@@ -40,7 +40,7 @@ columnNames = [
     "Row",
     "Player",
     "WS",
-    "WS",
+    "WS+",
     "Season",
     "Age",
     "Team",
@@ -95,11 +95,11 @@ def create_team(tx, team):
 
 def create_player(tx, player, team):
     tx.run("MERGE (season:Season {team: $team, season: $season})"
-           "MERGE (player:Player {id: $id})"
+           "MERGE (player:Player {id: $id, name: $name})"
            "MERGE (team:Team {name: $team})"
            "MERGE (season)-[:team_of {dummy: '123'}]->(team)"
-           "MERGE (player)-[:played_for {stats: 'on_me_bitch'}]->(season)",
-           id=player.loc["PID"], team=team, season=player.loc["Season"])
+           "MERGE (player)-[:played_for {ws: $win_share, ppg: $ppg}]->(season)",
+           id=player.loc["PID"], team=team, season=player.loc["Season"], win_share = player.loc["WS"], name = player.loc["Player"], ppg = player.loc["PTS"])
     
 
 with driver.session() as session:
@@ -111,7 +111,7 @@ with driver.session() as session:
         session.execute_write(create_team, i)
         print(f"Created {i}")
     for i in range(0, len(teamCSVList)):
-        teamCSVList[i].apply(axis = 1, func =lambda x: session.execute_write(create_player, x, teams[i]))
+        teamCSVList[i][teamCSVList[i]["Season"] >= "2000"].apply(axis = 1, func =lambda x: session.execute_write(create_player, x, teams[i]))
         print(f"Created team {teams[i]}")
     #Populating Players
     # session.execute_write(create_friend_of, "Alice", "Bob")
