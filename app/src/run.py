@@ -98,8 +98,8 @@ def create_player(tx, player, team):
            "MERGE (player:Player {id: $id, name: $name})"
            "MERGE (team:Team {name: $team})"
            "MERGE (season)-[:team_of {dummy: '123'}]->(team)"
-           "MERGE (player)-[:played_for {ws: $win_share, ppg: $ppg}]->(season)",
-           id=player.loc["PID"], team=team, season=player.loc["Season"], win_share = player.loc["WS"], name = player.loc["Player"], ppg = player.loc["PTS"])
+           "MERGE (player)-[:played_for {ws: $win_share, total_points: $ppg, total_steals: $steals, total_blocks: $blocks, total_rebounds: $total_rebounds, games_played: $games}]->(season)",
+           id=player.loc["PID"], team=team, season=player.loc["Season"], win_share = player.loc["WS"], name = player.loc["Player"], ppg = player.loc["PTS"], blocks = player.loc["BLK"],steals = player.loc["STL"], games = player.loc["G"], total_rebounds = player.loc["TRB"])
     
 
 with driver.session() as session:
